@@ -70,10 +70,11 @@ def del_edge(graph: dict, edge: tuple) -> dict:
     >>> del_edge({1: [2, 5], 2: [1, 4], 3: [4], 4: [2, 3], 5: [1]}, (2, 4))
     {1: [2, 5], 2: [1], 3: [4], 4: [3], 5: [1]}
     """
-    if edge[1] in graph[edge[0]]:
-        graph[edge[0]].remove(edge[1])
-    if edge[0] in graph[edge[1]]:
-        graph[edge[1]].remove(edge[0])
+    if edge in graph.keys():
+        if edge[1] in graph[edge[0]]:
+            graph[edge[0]].remove(edge[1])
+        if edge[0] in graph[edge[1]]:
+            graph[edge[1]].remove(edge[0])
     return graph
 def add_node(graph: dict, node: int) -> dict:
     """
@@ -92,7 +93,7 @@ def del_node(graph: dict, node: int) -> dict:
     >>> del_node({1: [2, 5], 2: [1, 4], 3: [4], 4: [2, 3], 5: [1]}, 4)
     {1: [2, 5], 2: [1], 3: [], 5: [1]}
     """
-    if node in graph.keys:
+    if node in graph.keys():
         graph.pop(node)
         for i in graph:
             if node in graph[i]:
