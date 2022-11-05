@@ -98,7 +98,7 @@ def del_node(graph: dict, node: int) -> dict:
         for i in graph:
             if node in graph[i]:
                 graph[i].remove(node)
-        return graph
+    return graph
 def convert_to_dot(graph: dict) -> None:
     """
     (dict) -> (None)
