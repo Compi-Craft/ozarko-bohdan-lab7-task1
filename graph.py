@@ -59,15 +59,19 @@ def add_edge(graph: dict, edge: tuple) -> dict:
     graph[edge[0]].append(edge[1])
     graph[edge[1]].append(edge[0])
     return graph
-def del_edge(graph: dict, edge: tuple) -> dict:
+def add_edge(graph: dict, edge: tuple) -> dict:
     """
-    (dict, tuple) -> (dict)
-    Delete an edge from the graph and return a new graph.
-    >>> del_edge({1: [2, 5], 2: [1, 4], 3: [4], 4: [2, 3], 5: [1]}, (2, 4))
-    {1: [2, 5], 2: [1], 3: [4], 4: [3], 5: [1]}
+    (dict, tuple) -> dict
+    Add a new edge to the graph and return new graph.
+    >>> add_edge({1: [2, 5], 2: [1, 4], 3: [4], 4: [2, 3], 5: [1]}, (1, 3))
+    {1: [2, 5, 3], 2: [1, 4], 3: [4, 1], 4: [2, 3], 5: [1]}
     """
-    graph[edge[0]].remove(edge[1])
-    graph[edge[1]].remove(edge[0])
+    if edge[0] not in graph:
+        graph.update({edge[0]: []})
+    graph[edge[0]].append(edge[1])
+    if edge[1] not in graph:
+        graph.update({edge[1]: []})
+    graph[edge[1]].append(edge[0])
     return graph
 def add_node(graph: dict, node: int) -> dict:
     """
